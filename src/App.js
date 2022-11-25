@@ -1,6 +1,7 @@
 import { useState } from "react"
 
 import Result from "./components/Result"
+import Navi from './components/Navbar'
 
 import foodService from './services/food'
 
@@ -15,7 +16,6 @@ const App = () =>{
 
   const getResult= (e) => {
     e.preventDefault()
-    console.log(search)
     foodService.getData(search).then(res => {
       setResult(res)
     },[])
@@ -23,8 +23,8 @@ const App = () =>{
 
   return (
     <div className="App">
-      <h1 className="text-center m-3">Ruokahaku</h1>
-      <Form onSubmit={getResult} className="bg-info rounded-3 col-lg-6 col-md-8 col-sm-10 mx-3 mx-sm-auto mt-3 p-3">
+      <Navi/>
+      <Form onSubmit={getResult} className="bg-info rounded-3 col-lg-4 col-md-6 col-sm-8 mx-3 mx-sm-auto mt-3 p-3">
         <Form.Group>
           <InputGroup>
             <Form.Control value={search} onChange={({ target }) => setSearch(target.value)} type="text" placeholder="Etsi ruoka-aineen tai annoksen nimellä"/>
